@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- 9. add bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Fetch APi Sandbox</title>
+</head>
+
+<body>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    window.onload = fetchLatestVisitorsCount;
+    function fetchLatestVisitorsCount() {
+      fetch('https://g8k0h5veuf.execute-api.ap-southeast-1.amazonaws.com/default/ITAD-FetchLatestVisitorCount')
+      .then( res => res.json() )
+      .then( data => console.log(data));
+    }
+  </script>
+</body>
+
+</html>
