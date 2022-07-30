@@ -19,7 +19,7 @@
 
   <script>
     var jsondata;
-    window.onload = fetchLatestVisitorsCount;
+    document.onload = fetchLatestVisitorsCount;
     function fetchLatestVisitorsCount() {
       fetch('https://g8k0h5veuf.execute-api.ap-southeast-1.amazonaws.com/default/ITAD-FetchLatestVisitorCount')
       .then( res => res.json() )
