@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    
     <div id="output"></div>
   </div>
 
@@ -21,8 +22,9 @@
     function fetchLatestVisitorsCount() {
       fetch('https://g8k0h5veuf.execute-api.ap-southeast-1.amazonaws.com/default/ITAD-FetchLatestVisitorCount')
       .then( res => res.json() )
-      .then( data => console.log(data));
+      .then( data => ${visitorCount});
     }
+    columnContainer.insertAdjacentHTML('output', column);
   </script>
 </body>
 
