@@ -18,20 +18,20 @@
   </div>
 
   <script>
+    var jsondata;
     window.onload = fetchLatestVisitorsCount;
     function fetchLatestVisitorsCount() {
-      fetch('https://g8k0h5veuf.execute-api.ap-southeast-1.amazonaws.com/default/ITAD-FetchLatestVisitorCount', {
-        body: JSON.stringify(data)
-      })
+      fetch('https://g8k0h5veuf.execute-api.ap-southeast-1.amazonaws.com/default/ITAD-FetchLatestVisitorCount')
       .then( res => res.json() )
       .then((data) => {
         console.log('Success:', data);
+        jsondata = data;
       })
       .catch((error) => {
         console.error('Error:', error);
       });
     }
-    document.getElementById('output').innerHTML = data.visitorCount;
+    document.getElementById('output').innerHTML = jsondata.visitorCount;
   </script>
 </body>
 
