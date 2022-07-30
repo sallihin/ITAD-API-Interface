@@ -13,8 +13,8 @@
 </head>
 
 <body>
-    <h1>Total visitors right now</h1>
-    <div id="output"></div>
+    <h1>Total visitors</h1>
+    <h2 id="output"></h2>
   </div>
 
   <script>
@@ -31,7 +31,7 @@
         console.error('Error:', error);
       });
     }
-    document.getElementById('output').innerHTML = JSON.stringify(jsondata["Item"]["visitorcount"]["N"];
+    document.getElementById('output').innerHTML = JSON.stringify(jsondata["Item"]["visitorcount"]["N"]);
   </script>
 </body>
 
