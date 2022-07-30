@@ -5,33 +5,88 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-  <!-- 9. add bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>Fetch APi Sandbox</title>
+
+  <style>
+    
+    h1 { 
+      font-size: 60px;
+      color: #FFFFFF;
+      margin-right: 10px;
+    }
+    h2 {
+      font-size: 60px;
+      color: #FFFFFF;
+      margin-left: 20px;
+      margin-right: 20px;
+  }
+    body {
+      justify-content: center;
+      align-items: center;
+      background: #222222;
+      display: flex;
+      height: 100vh;
+      padding: 0;
+      margin: 0;
+    }
+
+    .progress {
+      background: #E5E5E5;
+      justify-content: flex-start;
+      border-radius: 100px;
+      align-items: center;
+      position: relative;
+      padding: 0 5px;
+      display: flex;
+      height: 40px;
+      width: 500px;
+    }
+
+    .progress-value {
+      animation: load 3s normal forwards;
+      box-shadow: 0 10px 40px -10px #fff;
+      border-radius: 100px;
+      background: #FF00B7;
+      height: 30px;
+      width: 0;
+    }
+
+    @keyframes load {
+      0% { width: 0; }
+      100% { width: var(--change); }
+    }
+  </style>
 </head>
 
-<body>
-    <h1>Total visitors</h1>
-    <h2 id="output"></h2>
-  </div>
+<body style="text-align: center;">
+
+      <h1>Total visitors:</h1>
+      <h2 id="output"></h2>
+
+      <div class="progress">
+        <div class="progress-value"></div>
+      </div>
+
+      <h2 id="output">Max 30</h2>
+
 
   <script>
-    var jsondata;
-    document.onload = fetchLatestVisitorsCount;
     function fetchLatestVisitorsCount() {
       fetch('https://g8k0h5veuf.execute-api.ap-southeast-1.amazonaws.com/default/ITAD-FetchLatestVisitorCount')
-      .then( res => res.json() )
-      .then((data) => {
-        console.log('Success:', data);
-        jsondata = data;
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+        .then(res => res.json())
+        .then((data) => {
+          count = data['visitorcount']['N'];
+          document.getElementById('output').innerHTML = count;
+          percentage = (count/30)*100;
+          document.documentElement.style.setProperty('--change', percentage + "%");
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
     }
-    document.getElementById('output').innerHTML = JSON.stringify(jsondata["Item"]["visitorcount"]["N"]);
+    document.onload = fetchLatestVisitorsCount()
+
   </script>
 </body>
 
